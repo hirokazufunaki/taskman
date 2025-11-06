@@ -41,3 +41,6 @@ out/
 
 ### MCP ###
 .serena/
+
+### macOS ###
+.DS_Store
