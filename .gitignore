@@ -44,3 +44,17 @@ out/
 
 ### macOS ###
 .DS_Store
+
+### Terraform ###
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.log
+*.tfbackend
+
+# tfsec
+tfsec-junit.xml
+
+# asdf
+.tool-versions
