@@ -4,7 +4,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Env             = var.prefix
+      Env             = var.env
       Owner           = var.owner
       ApplicationName = "taskman"
     }
