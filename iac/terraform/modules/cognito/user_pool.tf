@@ -1,5 +1,6 @@
 resource "aws_cognito_user_pool" "main" {
   name = var.user_pool_name
+  deletion_protection = "ACTIVE"
 
   # ユーザー名属性: emailをユーザー名として使用
   username_attributes      = ["email"]
@@ -21,7 +22,7 @@ resource "aws_cognito_user_pool" "main" {
 
   # 管理者作成ユーザー設定
   admin_create_user_config {
-    allow_admin_create_user_only = true
+    allow_admin_create_user_only = true  #  ユーザーによるサインアップを許可しない
 
     invite_message_template {
       email_subject = "【重要】アカウント作成のご案内"
@@ -56,11 +57,13 @@ resource "aws_cognito_user_pool" "main" {
 
   # メール設定
   email_configuration {
-    email_sending_account = "COGNITO_DEFAULT"  # 開発環境向け（1日50通まで無料）
-    # 本番環境ではSES使用を推奨:
-    # email_sending_account  = "DEVELOPER"
-    # source_arn             = aws_ses_email_identity.cognito.arn
-    # from_email_address     = "noreply@example.com"
+    # 使用するメール配信方法。
+    # Cognitoに組み込まれたデフォルトのメール機能を使用する場合は`COGNITO_DEFAULT`、
+    # Amazon SES設定を使用する場合は`DEVELOPER`を指定。
+    # COGNITO_DEFAULT のままだと送信数やカスタマイズに制限があるため、
+    # 本番環境では Amazon SES を利用する(DEVELOPER を指定する)ことを推奨。
+    # 参考：https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/user-pool-email.html
+    email_sending_account = "COGNITO_DEFAULT"
   }
 
   # 検証メッセージテンプレート
