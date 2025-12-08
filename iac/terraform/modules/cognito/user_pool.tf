@@ -1,6 +1,5 @@
 resource "aws_cognito_user_pool" "main" {
   name = var.user_pool_name
-  deletion_protection = "ACTIVE"
 
   # ユーザー名属性: emailをユーザー名として使用
   username_attributes      = ["email"]
@@ -91,25 +90,5 @@ resource "aws_cognito_user_pool" "main" {
     }
   }
 
-  # カスタム属性の例
-  schema {
-    name                     = "department"
-    attribute_data_type      = "String"
-    developer_only_attribute = false
-    mutable                  = true
-    required                 = false
-
-    string_attribute_constraints {
-      min_length = 1
-      max_length = 100
-    }
-  }
-
-  tags = {
-    Environment = var.env
-    ManagedBy   = "Terraform"
-    Purpose     = "AdminOnlyUserPool"
-  }
-
-  deletion_protection = "ACTIVE"  # 本番環境推奨
+  deletion_protection = "ACTIVE"
 }
