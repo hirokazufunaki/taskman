@@ -24,7 +24,7 @@ resource "aws_cognito_user_pool_client" "main" {
 
   enable_token_revocation = true  # トークン失効機能
 
-  # セキュリティ設定（フィッシング攻撃対策）
+  # セキュリティ設定（存在しないユーザーと存在するがパスワードが間違っているユーザーでエラーメッセージを区別しない）
   prevent_user_existence_errors = "ENABLED"
 
   # OAuth不使用（Hosted UI不使用の場合）
