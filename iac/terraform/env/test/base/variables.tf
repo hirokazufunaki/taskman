@@ -19,11 +19,6 @@ variable "env" {
   }
 }
 
-variable "application_name" {
-  description = "アプリケーション名"
-  type = string
-}
-
 variable "owner" {
   description = "AWSユーザーID"
   type = string

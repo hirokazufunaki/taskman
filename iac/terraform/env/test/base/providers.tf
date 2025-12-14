@@ -6,7 +6,7 @@ provider "aws" {
     tags = {
       Env             = var.env
       Owner           = var.owner
-      ApplicationName = "taskman"
+      ApplicationName = local.application_name
     }
   }
 }

@@ -90,5 +90,5 @@ resource "aws_cognito_user_pool" "main" {
     }
   }
 
-  deletion_protection = "ACTIVE"
+  deletion_protection = "INACTIVE"
 }
